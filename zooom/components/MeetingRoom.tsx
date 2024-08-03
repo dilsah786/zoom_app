@@ -30,14 +30,13 @@ const MeetingRoom = () => {
   const [showParticipants, setShowParticipants] = useState(false);
   const searchParams = useSearchParams();
   const isPersonalRoom = !!searchParams.get("personal");
-  const {useCallCallingState} = useCallStateHooks();
+  const { useCallCallingState } = useCallStateHooks();
 
+  const callingState = useCallCallingState();
 
-    const callingState = useCallCallingState();
-
-if(callingState !==CallingState.JOINED){
-  return <Loader/>
-}
+  if (callingState !== CallingState.JOINED) {
+    return <Loader />;
+  }
 
   const CallLayout = () => {
     switch (layout) {
@@ -105,7 +104,7 @@ if(callingState !==CallingState.JOINED){
             <User size={20} className="text-white" />
           </div>
         </button>
-        {!isPersonalRoom && <EndCallButton/>}
+        {!isPersonalRoom && <EndCallButton />}
       </div>
     </section>
   );
